@@ -428,14 +428,15 @@ public class CadSplash extends javax.swing.JFrame {
         }
     }
     
-    public void altSplashID(){
+public void altSplashID() {
+    try {
         s1 = new Splash();
-        
+
         s1.setCodProduto(Integer.parseInt(cxCodProdutoSplash.getText()));
-        
+
         s1 = gs.atualizaSplashID(s1);
-        
-        if(s1 != null){
+
+        if (s1 != null) {
             cxCodProdutoSplash.setText(Integer.toString(s1.getCodProduto()));
             cxNomeSplash.setText(s1.getNome());
             cxPrecoSplash.setText(Float.toString(s1.getPreco()));
@@ -444,24 +445,34 @@ public class CadSplash extends javax.swing.JFrame {
             cxAnoAtualSplash.setText(Float.toString(s1.getAnoAtual()));
             cxAplicacao.setText(Integer.toString(s1.getAplicacaoMl()));
             cxPercentualFragrancia.setText(Integer.toString(s1.getPercentualFragrancia()));
-            
+
             JOptionPane.showMessageDialog(
                     null,
-                    "Confira do dados!",
+                    "Confira os dados!",
                     "ALTERAÇÃO DE PRODUTO",
-                    1
+                    JOptionPane.INFORMATION_MESSAGE
             );
             limparSplash();
-        }
-        else{
-                    JOptionPane.showMessageDialog(
+        } else {
+            JOptionPane.showMessageDialog(
                     null,
-                    "NÃO EXISTE PRODUTO COM ESTE NOME",
+                    "NÃO EXISTE PRODUTO COM ESTE CÓDIGO",
                     "ALTERAÇÃO DE PRODUTO",
                     JOptionPane.ERROR_MESSAGE
             );
         }
+            } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(
+                        null,
+                        "Verifique os valores inseridos!",
+                        "ERRO ENTRADA DE DADOS",
+                        JOptionPane.ERROR_MESSAGE
+            );
+            cxCodProdutoSplash.setText("");
+            cxCodProdutoSplash.requestFocus();
     }
+}
+
     
     public void consSplashID(){
         s1 = new Splash();

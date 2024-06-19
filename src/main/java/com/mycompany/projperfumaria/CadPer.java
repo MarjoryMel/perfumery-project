@@ -413,14 +413,15 @@ public class CadPer extends javax.swing.JFrame {
         
     }
     
-    public void altPerID(){
+public void altPerID() {
+    try {
         p1 = new Perfume();
-        
+
         p1.setCodProduto(Integer.parseInt(cxCodProduto.getText()));
-        
+
         p1 = gp.atualizaPerID(p1);
-        
-        if(p1 != null){
+
+        if (p1 != null) {
             cxCodProduto.setText(Integer.toString(p1.getCodProduto()));
             cxNome.setText(p1.getNome());
             cxPreco.setText(Float.toString(p1.getPreco()));
@@ -429,24 +430,34 @@ public class CadPer extends javax.swing.JFrame {
             cxAnoAtual.setText(Float.toString(p1.getAnoAtual()));
             cxFragrancia.setText(p1.getConcentracao());
             cxOlfativa.setText(p1.getFamiliaOlfativa());
-            
-                    JOptionPane.showMessageDialog(
+
+            JOptionPane.showMessageDialog(
                     null,
-                    "Confira do dados!",
+                    "Confira os dados!",
                     "ALTERAÇÃO DE PRODUTO",
-                    1
+                    JOptionPane.INFORMATION_MESSAGE
             );
             limpar();
-        }
-        else{
-                    JOptionPane.showMessageDialog(
+        } else {
+            JOptionPane.showMessageDialog(
                     null,
-                    "NÃO EXISTE PRODUTO COM ESTE NOME",
+                    "NÃO EXISTE PRODUTO COM ESTE CÓDIGO",
                     "ALTERAÇÃO DE PRODUTO",
                     JOptionPane.ERROR_MESSAGE
             );
         }
-    }
+            } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(
+                    null,
+                    "Insira um preço com valor positivo!",
+                    "ERRO ENTRADA DE DADOS",
+                    JOptionPane.ERROR_MESSAGE
+                );
+                cxCodProduto.setText("");
+                cxCodProduto.requestFocus();
+            }
+}
+
     
     public void consPerID(){
         p1 = new Perfume();

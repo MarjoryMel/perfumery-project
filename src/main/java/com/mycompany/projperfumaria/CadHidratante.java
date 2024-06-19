@@ -435,14 +435,15 @@ public class CadHidratante extends javax.swing.JFrame {
         }
     }
     
-    public void altHidraID(){
+public void altHidraID() {
+    try {
         h1 = new Hidratante();
-        
+
         h1.setCodProduto(Integer.parseInt(cxCodProdutoHidra.getText()));
-        
+
         h1 = gh.atualizaHidraID(h1);
-        
-        if(h1 != null){
+
+        if (h1 != null) {
             cxCodProdutoHidra.setText(Integer.toString(h1.getCodProduto()));
             cxNomeHidra.setText(h1.getNome());
             cxPrecoHidra.setText(Float.toString(h1.getPreco()));
@@ -451,24 +452,34 @@ public class CadHidratante extends javax.swing.JFrame {
             cxAnoAtualHidra.setText(Float.toString(h1.getAnoAtual()));
             cxHidratacao.setText(Integer.toString(h1.getFatorHidratacao()));
             cxSolar.setText(h1.getProtecaoSolar());
-            
+
             JOptionPane.showMessageDialog(
                     null,
-                    "Confira do dados!",
+                    "Confira os dados!",
                     "ALTERAÇÃO DE PRODUTO",
-                    1
+                    JOptionPane.INFORMATION_MESSAGE
             );
             limparHidra();
-        }
-        else{
-                    JOptionPane.showMessageDialog(
+        } else {
+            JOptionPane.showMessageDialog(
                     null,
-                    "NÃO EXISTE PRODUTO COM ESTE NOME",
+                    "NÃO EXISTE PRODUTO COM ESTE CÓDIGO",
                     "ALTERAÇÃO DE PRODUTO",
                     JOptionPane.ERROR_MESSAGE
             );
         }
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "Verifique os valores inseridos!",
+                    "ERRO ENTRADA DE DADOS",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            cxCodProdutoHidra.setText("");
+            cxCodProdutoHidra.requestFocus();
     }
+}
+
     
     public void consHidraID(){
         h1 = new Hidratante();
