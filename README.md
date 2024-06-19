@@ -34,15 +34,10 @@ The goal of this project is to create a comprehensive system for managing a perf
 
 1. Clone the repository to your local machine.
     ```sh
-    git clone https://github.com/your-username/perfumery-system.git
+    git clone https://github.com/MarjoryMel/perfumery-project
     ```
 2. Open the project in NetBeans.
 3. Compile and run the project from the IDE.
-
-## Project Structure
-
-- **src:** Source code directory
-- **screenshots:** Directory containing screenshots of the application
 
 ## Screenshots
 
